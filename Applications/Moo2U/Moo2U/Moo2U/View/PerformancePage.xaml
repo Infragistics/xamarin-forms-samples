@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    xmlns:igGauges="clr-namespace:Infragistics.XamarinForms.Controls.Gauges;assembly=Infragistics.XF.Gauges"
+    xmlns:igCharts="clr-namespace:Infragistics.XamarinForms.Controls.Charts;assembly=Infragistics.XF.Charts"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Moo2U.Controls;assembly=Moo2U"
+    xmlns:converters="clr-namespace:Moo2U.Converters;assembly=Moo2U"
+    xmlns:behaviors="clr-namespace:Moo2U.Behaviors;assembly=Moo2U"
+    xmlns:model="clr-namespace:Moo2U.Model;assembly=Moo2U"
+    x:Class="Moo2U.View.PerformancePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EnumMatchesEnumToBooleanConverter
+                x:Key="EnumMatchesEnumToBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness">
+            <On
+                Platform="iOS"
+                Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ScrollView>
+        <Grid>
+            <StackLayout
+                Spacing="0"
+                Margin="10,20,10,0">
+                <Label
+                    Text="STATISTICS PERIOD"
+                    Style="{StaticResource Label9}" />
+
+                <controls:ButtonBar
+                    Margin="0,5,0,0"
+                    Command="{Binding Path=ButtonBarSelectedCommand}"
+                    ActiveColor="{StaticResource SelectedBarColor}"
+                    NotActiveColor="{StaticResource BackgroundColor}"
+                    HorizontalOptions="Center"
+                    HeightRequest="29"
+                    WidthRequest="328" />
+
+                <Grid
+                    Margin="0,30"
+                    ColumnSpacing="0"
+                    RowSpacing="-5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="Auto" />
+                        <RowDefinition
+                            Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="{Binding Path=PerformanceAggregate.ItemsDeliveredText}"
+                        Style="{StaticResource Label46}" />
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="{Binding Path=PerformanceAggregate.ItemsPerOrderText}"
+                        Style="{StaticResource Label46}" />
+                    <Label
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Text="{Binding Path=PerformanceAggregate.MilesDrivenText}"
+                        Style="{StaticResource Label46}" />
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="items delivered"
+                        Style="{StaticResource Label11}" />
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="items/order"
+                        Style="{StaticResource Label11}" />
+                    <Label
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Text="miles driven"
+                        Style="{StaticResource Label11}" />
+                </Grid>
+
+                <igCharts:XamDataChart
+                    Title="HOURLY REVENUE IN USD"                        
+                    TitleFontSize="{StaticResource LabelFontSize11}"
+                    TitleTextColor="{StaticResource TextBrush}"
+                    TitleHorizontalAlignment="Left"
+                    TitleFontFamily="{StaticResource DefaultFontFamily}"
+                    IsVisible="{Binding Path=Period, Converter={StaticResource EnumMatchesEnumToBooleanConverter}, ConverterParameter={x:Static model:Period.Today}}"
+                    BackgroundColor="Transparent">
+                    <igCharts:XamDataChart.Axes>
+                        <igCharts:NumericYAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            MajorStroke="{StaticResource TextBrush}"
+                            MinorStrokeThickness="0"
+                            MinorStroke="{x:Null}"
+                            MajorStrokeThickness=".5"
+                            x:Name="TodayYAxis"
+                            MinimumValue="0"
+                            MaximumValue="{Binding Path=PerformanceAggregate.MaxChartDataItemValue}"
+                            Interval="{Binding Path=PerformanceAggregate.ChartInterval}" />
+                        <igCharts:CategoryXAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTopMargin="10"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            TickLength="0"
+                            Gap="1"
+                            x:Name="TodayXAxis"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            Label="HourLabel" />
+                    </igCharts:XamDataChart.Axes>
+                    <igCharts:XamDataChart.Series>
+                        <igCharts:ColumnSeries
+                            Thickness="0"
+                            Brush="{StaticResource MangoBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            ValueMemberPath="Value"
+                            Title="HourLabel"
+                            XAxis="{x:Reference Name=TodayXAxis}"
+                            YAxis="{x:Reference Name=TodayYAxis}">
+                            <igCharts:ColumnSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:ColumnSeries.ToolTipTemplate>
+                        </igCharts:ColumnSeries>
+                        <igCharts:ColumnSeries
+                            Thickness="0"
+                            Brush="{StaticResource RustyRedBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.PreviousChartDataItems}"
+                            ValueMemberPath="Value"
+                            XAxis="{x:Reference Name=TodayXAxis}"
+                            YAxis="{x:Reference Name=TodayYAxis}">
+                            <igCharts:ColumnSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:ColumnSeries.ToolTipTemplate>
+                        </igCharts:ColumnSeries>
+                    </igCharts:XamDataChart.Series>
+                </igCharts:XamDataChart>
+
+                <igCharts:XamDataChart
+                    Title="DAILY REVENUE IN USD"
+                    TitleFontSize="{StaticResource LabelFontSize11}"
+                    TitleTextColor="{StaticResource TextBrush}"
+                    TitleHorizontalAlignment="Left"
+                    TitleFontFamily="{StaticResource DefaultFontFamily}"
+                    IsVisible="{Binding Path=Period, Converter={StaticResource EnumMatchesEnumToBooleanConverter}, ConverterParameter={x:Static model:Period.Week}}"
+                    BackgroundColor="Transparent">
+                    <igCharts:XamDataChart.Axes>
+                        <igCharts:NumericYAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            MajorStroke="{StaticResource TextBrush}"
+                            MinorStrokeThickness="0"
+                            MinorStroke="{x:Null}"
+                            MajorStrokeThickness=".5"
+                            x:Name="YAxis"
+                            MinimumValue="0"
+                            MaximumValue="{Binding Path=PerformanceAggregate.MaxChartDataItemValue}"
+                            Interval="{Binding Path=PerformanceAggregate.ChartInterval}" />
+                        <igCharts:CategoryXAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTopMargin="10"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            TickLength="0"
+                            Gap="1"
+                            x:Name="XAxis"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            Label="WeekLabel" />
+                    </igCharts:XamDataChart.Axes>
+                    <igCharts:XamDataChart.Series>
+                        <igCharts:ColumnSeries
+                            Thickness="0"
+                            Brush="{StaticResource MangoBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            ValueMemberPath="Value"
+                            Title="WeekLabel"
+                            XAxis="{x:Reference Name=XAxis}"
+                            YAxis="{x:Reference Name=YAxis}">
+                            <igCharts:ColumnSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:ColumnSeries.ToolTipTemplate>
+                        </igCharts:ColumnSeries>
+                        <igCharts:ColumnSeries
+                            Thickness="0"
+                            Brush="{StaticResource RustyRedBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.PreviousChartDataItems}"
+                            ValueMemberPath="Value"
+                            XAxis="{x:Reference Name=XAxis}"
+                            YAxis="{x:Reference Name=YAxis}">
+                            <igCharts:ColumnSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:ColumnSeries.ToolTipTemplate>
+                        </igCharts:ColumnSeries>
+                    </igCharts:XamDataChart.Series>
+                </igCharts:XamDataChart>
+
+                <igCharts:XamDataChart
+                    Title="DAILY REVENUE IN USD"
+                    TitleFontSize="{StaticResource LabelFontSize11}"
+                    TitleTextColor="{StaticResource TextBrush}"
+                    TitleHorizontalAlignment="Left"
+                    TitleFontFamily="{StaticResource DefaultFontFamily}"
+                    IsVisible="{Binding Path=Period, Converter={StaticResource EnumMatchesEnumToBooleanConverter}, ConverterParameter={x:Static model:Period.Month}}"
+                    BackgroundColor="Transparent">
+                    <igCharts:XamDataChart.Axes>
+                        <igCharts:NumericYAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            MajorStroke="{StaticResource TextBrush}"
+                            MinorStrokeThickness="0"
+                            MinorStroke="{x:Null}"
+                            MajorStrokeThickness=".5"
+                            x:Name="YAxisMonth"
+                            MaximumValue="{Binding Path=PerformanceAggregate.MaxChartDataItemValue}"
+                            MinimumValue="0"
+                            Interval="{Binding Path=PerformanceAggregate.ChartInterval}" />
+                        <igCharts:CategoryXAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTopMargin="10"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            TickLength="0"
+                            Gap="1"
+                            x:Name="XAxisMonth"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            Label="MonthLabel" />
+                    </igCharts:XamDataChart.Axes>
+                    <igCharts:XamDataChart.Series>
+                        <igCharts:SplineSeries
+                            Brush="{StaticResource MangoBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            ValueMemberPath="Value"
+                            Title="MonthLabel"
+                            XAxis="{x:Reference Name=XAxisMonth}"
+                            YAxis="{x:Reference Name=YAxisMonth}">
+                            <igCharts:SplineSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:SplineSeries.ToolTipTemplate>
+                        </igCharts:SplineSeries>
+                        <igCharts:SplineSeries
+                            Brush="{StaticResource RustyRedBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.PreviousChartDataItems}"
+                            ValueMemberPath="Value"
+                            XAxis="{x:Reference Name=XAxisMonth}"
+                            YAxis="{x:Reference Name=YAxisMonth}">
+                            <igCharts:SplineSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:SplineSeries.ToolTipTemplate>
+                        </igCharts:SplineSeries>
+                    </igCharts:XamDataChart.Series>
+                </igCharts:XamDataChart>
+
+                <igCharts:XamDataChart
+                    Title="MONTHLY REVENUE IN USD"
+                    TitleFontSize="{StaticResource LabelFontSize11}"
+                    TitleTextColor="{StaticResource TextBrush}"
+                    TitleHorizontalAlignment="Left"
+                    TitleFontFamily="{StaticResource DefaultFontFamily}"
+                    PlotAreaMarginTop="20"
+                    IsVisible="{Binding Path=Period, Converter={StaticResource EnumMatchesEnumToBooleanConverter}, ConverterParameter={x:Static model:Period.Year}}"
+                    BackgroundColor="Transparent">
+                    <igCharts:XamDataChart.Axes>
+                        <igCharts:NumericYAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            MajorStroke="{StaticResource TextBrush}"
+                            MinorStrokeThickness="0"
+                            MinorStroke="{x:Null}"
+                            MajorStrokeThickness=".5"
+                            x:Name="YAxisYear"
+                            MinimumValue="0"
+                            MaximumValue="{Binding Path=PerformanceAggregate.MaxChartDataItemValue}"
+                            Interval="{Binding Path=PerformanceAggregate.ChartInterval}" />
+                        <igCharts:CategoryXAxis
+                            LabelFontSize="{StaticResource LabelFontSize11}"
+                            LabelTopMargin="10"
+                            LabelTextColor="{StaticResource TextBrush}"
+                            TickLength="0"
+                            Gap="1"
+                            x:Name="XAxisYear"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            Label="YearLabel" />
+                    </igCharts:XamDataChart.Axes>
+                    <igCharts:XamDataChart.Series>
+                        <igCharts:SplineAreaSeries
+                            MarkerType="Circle"
+                            MarkerBrush="White"
+                            MarkerOutline="{StaticResource MangoDarkBrush}"
+                            Outline="{StaticResource MangoDarkBrush}"
+                            Brush="{StaticResource MangoBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.CurrentChartDataItems}"
+                            ValueMemberPath="Value"
+                            Title="YearLabel"
+                            XAxis="{x:Reference Name=XAxisYear}"
+                            YAxis="{x:Reference Name=YAxisYear}">
+                            <igCharts:SplineAreaSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:SplineAreaSeries.ToolTipTemplate>
+                        </igCharts:SplineAreaSeries>
+                        <igCharts:SplineAreaSeries
+                            MarkerType="Circle"
+                            MarkerBrush="White"
+                            MarkerOutline="{StaticResource RustyRedDarkBrush}"
+                            Outline="{StaticResource RustyRedDarkBrush}"
+                            Brush="{StaticResource RustyRedTransparentBrush}"
+                            ItemsSource="{Binding Path=PerformanceAggregate.PreviousChartDataItems}"
+                            ValueMemberPath="Value"
+                            XAxis="{x:Reference Name=XAxisYear}"
+                            YAxis="{x:Reference Name=YAxisYear}">
+                            <igCharts:SplineAreaSeries.ToolTipTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        FontSize="{StaticResource LabelFontSize14}"
+                                        Margin="5"
+                                        Text="{Binding Path=Item.ToolTipText}" />
+                                </DataTemplate>
+                            </igCharts:SplineAreaSeries.ToolTipTemplate>
+                        </igCharts:SplineAreaSeries>
+                    </igCharts:XamDataChart.Series>
+                </igCharts:XamDataChart>
+
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,30"
+                    Orientation="Horizontal">
+                    <BoxView
+                        VerticalOptions="Center"
+                        HeightRequest="{StaticResource DimensionRequest16}"
+                        WidthRequest="{StaticResource DimensionRequest16}"
+                        BackgroundColor="{StaticResource MangoColor}" />
+                    <Label
+                        Text="CURRENT PERIOD"
+                        Style="{StaticResource Label9}" />
+
+                    <BoxView
+                        Margin="30,0,0,0"
+                        VerticalOptions="Center"
+                        HeightRequest="{StaticResource DimensionRequest16}"
+                        WidthRequest="{StaticResource DimensionRequest16}"
+                        BackgroundColor="{StaticResource RustyRedColor}" />
+                    <Label
+                        Text="PREVIOUS PERIOD"
+                        Style="{StaticResource Label9}" />
+
+                </StackLayout>
+
+                <Label
+                    HorizontalOptions="Start"
+                    Text="TOTAL REVENUE FOR PERIOD"
+                    Style="{StaticResource Label12}" />
+
+                <igGauges:XamBulletGraph
+                    FontSize="{StaticResource LabelFontSize12}"
+                    TransitionDuration="400"
+                    FormatLabel="XamBulletGraph_OnFormatLabel"
+                    LabelInterval="{Binding Path=PerformanceAggregate.BulletGraphLabelInterval}"
+                    ValueInnerExtent="0.45"
+                    ValueOuterExtent="0.75"
+                    Interval="{Binding Path=PerformanceAggregate.BulletGraphInterval}"
+                    MaximumValue="{Binding Path=PerformanceAggregate.BulletGraphMaxValue}"
+                    Value="{Binding Path=PerformanceAggregate.RevenueForPeriod}"
+                    TargetValue="{Binding Path=PerformanceAggregate.RevenueForPreviousPeriod}"
+                    BackingBrush="#00FFFFFF"
+                    BackingOutline="#00FFFFFF"
+                    BackgroundColor="#00FFFFFF"
+                    ValueBrush="{StaticResource MangoBrush}"
+                    TargetValueBrush="{StaticResource DarkGreenBrush}"
+                    RangeBrushes="#FFD02C16 #FF009B6A"
+                    RangeOutlines="#FFD02C16 #FF009B6A"
+                    behaviors:BulletGraphRangeCreatorBehavior.RangesData="{Binding Path=PerformanceAggregate.BulletGraphRangeCreatorItems}"
+                    Margin="0,15" />
+
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,30"
+                    Orientation="Horizontal">
+                    <BoxView
+                        VerticalOptions="Center"
+                        HeightRequest="{StaticResource DimensionRequest16}"
+                        WidthRequest="{StaticResource DimensionRequest16}"
+                        BackgroundColor="{StaticResource MangoColor}" />
+                    <Label
+                        Text="CURRENT PERIOD"
+                        Style="{StaticResource Label9}" />
+
+                    <BoxView
+                        Margin="30,0,0,0"
+                        VerticalOptions="Center"
+                        HeightRequest="{StaticResource DimensionRequest16}"
+                        WidthRequest="{StaticResource DimensionRequest16}"
+                        BackgroundColor="{StaticResource DarkGreenColor}" />
+                    <Label
+                        Text="PREVIOUS PERIOD"
+                        Style="{StaticResource Label9}" />
+
+                </StackLayout>
+
+                <StackLayout
+                    IsVisible="{Binding Path=IsNotPeriodToday}">
+                    <Label
+                        HorizontalOptions="Start"
+                        Text="TOP 3 CUSTOMERS"
+                        Style="{StaticResource Label12}" />
+
+                    <controls:AlternatingRowColorListView
+                        AlternateRowColor="{StaticResource LightKhakiColor}"
+                        RowHeight="48"
+                        SeparatorColor="Transparent"
+                        BackgroundColor="Transparent"
+                        Margin="0,10"
+                        ItemsSource="{Binding Path=PerformanceAggregate.TopCustomers}">
+                        <x:Arguments>
+                            <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                        </x:Arguments>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition
+                                                Width="*" />
+                                            <ColumnDefinition
+                                                Width="Auto" />
+                                            <ColumnDefinition
+                                                Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                            Margin="10,0,0,0"
+                                            Style="{StaticResource Label13}"
+                                            Grid.Column="0"
+                                            HorizontalTextAlignment="Start"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding Path=Name}" />
+                                        <Label
+                                            Style="{StaticResource Label13}"
+                                            Margin="0,0,20,0"
+                                            Grid.Column="1"
+                                            HorizontalTextAlignment="End"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding Path=Quantity, StringFormat='{0:N0} items'}" />
+                                        <Label
+                                            Margin="0,0,15,0"
+                                            Style="{StaticResource Label13}"
+                                            Grid.Column="2"
+                                            HorizontalTextAlignment="End"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding Path=Revenue, StringFormat='{0:C}'}" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </controls:AlternatingRowColorListView>
+                </StackLayout>
+
+                <Grid
+                    RowSpacing="0"
+                    IsVisible="{Binding Path=IsPeriodToday}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="Auto" />
+                        <RowDefinition
+                            Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <Label
+                        VerticalOptions="End"
+                        VerticalTextAlignment="End"
+                        Text="AVERAGE SPEED"
+                        Style="{StaticResource Label12}" />
+                    <Label
+                        VerticalOptions="End"
+                        VerticalTextAlignment="End"
+                        Grid.Column="1"
+                        Text="FUEL EFFICIENCY"
+                        Style="{StaticResource Label12}" />
+                    
+                    <Grid
+                        VerticalOptions="Start"
+                        Margin="0,-30,0,0"
+                        RowSpacing="0"
+                        Grid.Row="1">
+                        <igGauges:XamRadialGauge
+                            RangeBrushes="#fffba821 #ffeddcd4"
+                            ScaleStartAngle="135"
+                            ScaleEndAngle="45"
+                            MaximumValue="70"
+                            behaviors:RadialGaugeRangeCreatorBehavior.RangeValue="{Binding Path=PerformanceAggregate.AverageSpeed}"
+                            RadiusMultiplier=".85"
+                            BackingBrush="#00000000"
+                            BackingOutline="#00000000"
+                            BackgroundColor="#00000000"
+                            FontBrush="#00000000"
+                            NeedlePivotShape="None"
+                            NeedleShape="None"
+                            MinorTickBrush="#00000000"
+                            TickBrush="#00000000" />
+                        <StackLayout
+                            Spacing="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Label
+                                Text="{Binding Path=PerformanceAggregate.AverageSpeed}"
+                                Style="{StaticResource Label46}"
+                                TextColor="{StaticResource MangoColor}" />
+                            <Label
+                                VerticalOptions="Start"
+                                VerticalTextAlignment="Start"
+                                Text="mph"
+                                Style="{StaticResource Label11}">
+                                <Label.Margin>
+                                    <OnPlatform
+                                        x:TypeArguments="Thickness">
+                                        <On
+                                            Platform="Android"
+                                            Value="0,-10,0,0" />
+                                    </OnPlatform>
+                                </Label.Margin>
+                            </Label>
+                        </StackLayout>
+                        
+                    </Grid>
+                    <Grid
+                        RowSpacing="0"
+                        VerticalOptions="Start"
+                        Margin="0,-30,0,0"
+                        Grid.Row="1"
+                        Grid.Column="1">
+                        <igGauges:XamRadialGauge
+                            RangeBrushes="#fffba821 #ffeddcd4"
+                            ScaleStartAngle="135"
+                            ScaleEndAngle="45"
+                            MaximumValue="70"
+                            behaviors:RadialGaugeRangeCreatorBehavior.RangeValue="{Binding Path=PerformanceAggregate.FuelEfficiency}"
+                            RadiusMultiplier=".85"
+                            BackingBrush="#00000000"
+                            BackingOutline="#00000000"
+                            BackgroundColor="#00000000"
+                            FontBrush="#00000000"
+                            NeedlePivotShape="None"
+                            NeedleShape="None"
+                            MinorTickBrush="#00000000"
+                            TickBrush="#00000000" />
+                        <StackLayout
+                            Spacing="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Label
+                                Text="{Binding Path=PerformanceAggregate.FuelEfficiency}"
+                                Style="{StaticResource Label46}"
+                                TextColor="{StaticResource MangoColor}" />
+                            <Label
+                                VerticalOptions="Start"
+                                VerticalTextAlignment="Start"
+                                Text="mpg"
+                                Style="{StaticResource Label11}">
+                                <Label.Margin>
+                                    <OnPlatform
+                                        x:TypeArguments="Thickness">
+                                        <On
+                                            Platform="Android"
+                                            Value="0,-10,0,0" />
+                                    </OnPlatform>
+                                </Label.Margin>
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+
+            <Grid
+                BackgroundColor="#20000000"
+                IsVisible="{Binding Path=IsBusy}">
+                <ActivityIndicator
+                    IsRunning="True"
+                    HeightRequest="70"
+                    Color="Firebrick"
+                    Margin="0,40,0,0"
+                    VerticalOptions="Start" />
+            </Grid>
+            
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

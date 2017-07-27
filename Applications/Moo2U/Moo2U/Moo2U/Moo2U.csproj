@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1771802-8CBE-4F2D-91D9-9763A3B90140}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Moo2U</RootNamespace>
+    <AssemblyName>Moo2U</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>IDE0001;IDE0002;IDE0003;IDE0016</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>IDE0001;IDE0002;IDE0003</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Behaviors\BehaviorBase.cs" />
+    <Compile Include="Behaviors\BulletGraphRangeCreatorBehavior.cs" />
+    <Compile Include="Behaviors\BulletGraphRangeCreatorItem.cs" />
+    <Compile Include="Behaviors\RadialGaugeRangeCreatorBehavior.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controls\AlternatingRowColorListView.cs" />
+    <Compile Include="Controls\ButtonBarState.cs" />
+    <Compile Include="Controls\ButtonBar.xaml.cs">
+      <DependentUpon>ButtonBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RoundedBoxView.cs" />
+    <Compile Include="Controls\RoundProgressIndicator.cs" />
+    <Compile Include="Controls\TapableImage.cs" />
+    <Compile Include="Converters\OrderItemStatusEnumToBooleanConverter.cs" />
+    <Compile Include="Converters\EnumMatchesEnumToBooleanConverter.cs" />
+    <Compile Include="Infrastructure\DoubleExtensions.cs" />
+    <Compile Include="Infrastructure\FormViewModelBase.cs" />
+    <Compile Include="Infrastructure\NavigationViewModelBase.cs" />
+    <Compile Include="Infrastructure\KFormatExtensions.cs" />
+    <Compile Include="Infrastructure\ShowDialog.cs" />
+    <Compile Include="Infrastructure\ViewModelBase.cs" />
+    <Compile Include="Model\AddressType.cs" />
+    <Compile Include="Model\ChartDataItem.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\DataItemKind.cs" />
+    <Compile Include="Model\DeliverOrder.cs" />
+    <Compile Include="Model\DeliverOrderItem.cs" />
+    <Compile Include="Model\DeliveryHistory.cs" />
+    <Compile Include="Model\DeliveryHistoryItem.cs" />
+    <Compile Include="Model\DeliveryListItem.cs" />
+    <Compile Include="Model\DeliveryStop.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderItem.cs" />
+    <Compile Include="Model\OrderItemStatus.cs" />
+    <Compile Include="Model\OrderStatus.cs" />
+    <Compile Include="Model\PerformanceAggregate.cs" />
+    <Compile Include="Model\Period.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\TopCustomer.cs" />
+    <Compile Include="Converters\OrderStatusEnumToBooleanConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleData\Database.cs" />
+    <Compile Include="SampleData\DataGenerator.cs" />
+    <Compile Include="SampleData\IDatabase.cs" />
+    <Compile Include="SampleData\IDataGenerator.cs" />
+    <Compile Include="SampleData\StringCase.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\DeliveryHistoryService.cs" />
+    <Compile Include="Services\DeliveryStopService.cs" />
+    <Compile Include="Services\ICustomerService.cs" />
+    <Compile Include="Services\IDeliveryHistoryService.cs" />
+    <Compile Include="Services\IDeliveryStopService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\ISQLite.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Infrastructure\ThreadHelper.cs" />
+    <Compile Include="View\CrashPage.xaml.cs">
+      <DependentUpon>CrashPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeliveriesPage.xaml.cs">
+      <DependentUpon>DeliveriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeliveriesPageViewModel.cs">
+      <DependentUpon>DeliveriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeliverOrderPage.xaml.cs">
+      <DependentUpon>DeliverOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeliverOrderPageViewModel.cs">
+      <DependentUpon>DeliverOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PerformancePage.xaml.cs">
+      <DependentUpon>PerformancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PerformancePageViewModel.cs">
+      <DependentUpon>PerformancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SeedDatabasePage.xaml.cs">
+      <DependentUpon>SeedDatabasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SeedDatabasePageViewModel.cs">
+      <DependentUpon>SeedDatabasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SignOrderPage.xaml.cs">
+      <DependentUpon>SignOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SignOrderPageViewModel.cs">
+      <DependentUpon>SignOrderPage.xaml</DependentUpon>
+    </Compile>
+    <!--<Compile Include="ViewModels\MainPageViewModel.cs" />-->
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!--<ItemGroup>
+    <EmbeddedResource Include="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>-->
+  <ItemGroup>
+    <Reference Include="Acr.XamForms.SignaturePad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SignaturePad.Xamarin.Forms.PCL.1.0.0.1\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Acr.XamForms.SignaturePad.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Infragistics.Core, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Core.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.Core.Charts, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Core.Charts.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.Core.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.Core.DataVisualization, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Core.DV.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.Core.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.Core.Gauges, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Core.Gauges.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.Core.Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.Core.Platform, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Core.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.Core.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.XF.Charts, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.XF.Charts.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.XF.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.XF.DataVisualization, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.XF.DV.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.XF.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.XF.Gauges, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.XF.Gauges.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.XF.Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.XF.Platform.Charts, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.XF.Charts.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.XF.Platform.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.XF.Platform.DataVisualization, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.XF.DV.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.XF.Platform.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.XF.Platform.Gauges, Version=17.1.20171.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.XF.Gauges.17.1.1000\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Infragistics.XF.Platform.Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Core.6.3.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Forms, Version=6.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Forms.6.3.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Forms, Version=6.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Unity.Forms.6.3.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.Unity.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp, Version=1.55.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SkiaSharp.1.55.1\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net.Async, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net.Async-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\DeliveriesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DeliverOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PerformancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\CrashPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ButtonBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\SignOrderPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\SeedDatabasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
