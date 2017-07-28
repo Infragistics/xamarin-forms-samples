@@ -53,17 +53,17 @@ namespace Moo2U
 		{
 			InitializeComponent();
 
-			TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+			//TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
-			try
-			{
+			//try
+			//{
 				var uri = InitializeTablesCheckDatabaseIsPopulated() ? Constants.DefaultUri : Constants.SeedDatabasePage;
 				await this.NavigationService.NavigateAsync(uri);
-			}
-			catch (Exception ex)
-			{
-				ShowCrashPage(ex);
-			}
+			//}
+			//catch (Exception ex)
+			//{
+			//	ShowCrashPage(ex);
+			//}
 		}
 
 		protected override void RegisterTypes()
