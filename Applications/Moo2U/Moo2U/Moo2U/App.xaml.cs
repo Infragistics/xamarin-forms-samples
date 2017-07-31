@@ -94,7 +94,7 @@ namespace Moo2U
 
 		protected override void OnStart()
 		{
-			MobileCenter.Start("android=67d634fa-471a-4c51-863a-06795d166649;", typeof(Analytics), typeof(Crashes));
+			//MobileCenter.Start("android=67d634fa-471a-4c51-863a-06795d166649;", typeof(Analytics), typeof(Crashes));
 		}
 
 		void ShowCrashPage(Exception ex = null)
