@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>E703F77D-1B67-498F-BC6A-4F707CE6AA17</ID>
+	<Tags>Data Chart Bullet Graph Radial Gauge Grid Schedule Pie Linear Barcode Sparkline</Tags>
+	<Gallery>true</Gallery>
+    	<Brief>Official Sample Browser for the Infragistics UI for Xamarin product.</Brief>
+        <HideZip>false</HideZip><!--If references code outside folder root, do not ZIP-->
+</SampleMetadata>

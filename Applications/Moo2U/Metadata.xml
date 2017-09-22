@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>b03b5133-444f-4c5a-9f62-20da1b1a2dc3</ID>
+	<Tags>Moo2U Data Chart Bullet Graph Radial Gauge</Tags>
+	<Gallery>true</Gallery>
+    	<Brief>Moo2U is an end-to-end, best practices reference application built on top of Xamarin.Forms, using the innovative Productivity Pack and UI widgets from Infragistics.</Brief>
+        <HideZip>false</HideZip><!--If references code outside folder root, do not ZIP-->
+</SampleMetadata>
