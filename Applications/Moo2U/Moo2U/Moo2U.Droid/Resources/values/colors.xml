@@ -1,8 +1,0 @@
-﻿<resources>
-    <color name="primary">#009b6a</color>
-    <color name="primaryDark">#000000</color>
-    <color name="accent">#009b6a</color>
-    <color name="window_background">#fefaf6</color>
-    <color name="listBox_selected_background">#30009b6a</color>
-    <color name="reds">#FFFF0000</color>
-</resources>
