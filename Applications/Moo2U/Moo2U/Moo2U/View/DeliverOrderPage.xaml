@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns:model="clr-namespace:Moo2U.Model;assembly=Moo2U"
+    xmlns:converters="clr-namespace:Moo2U.Converters;assembly=Moo2U"
+    xmlns:moo2u="clr-namespace:Moo2U;assembly=Moo2U"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Moo2U.View.DeliverOrderPage"
+    Title="{Binding Path=DeliverOrder.CustomerName}">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness">
+            <On
+                Platform="iOS"
+                Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:OrderStatusEnumToBooleanConverter
+                x:Key="OrderStatusEnumToBooleanConverter" />
+            <converters:OrderItemStatusEnumToBooleanConverter
+                x:Key="OrderItemStatusEnumToBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListView
+            x:Name="ListView"
+            RowHeight="72"
+            SeparatorColor="Transparent"
+            BackgroundColor="Transparent"
+            Margin="10,20,10,0"
+            ItemsSource="{Binding Path=DeliverOrder.DeliverOrderItems}">
+            <x:Arguments>
+                <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+            </x:Arguments>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell
+                        PropertyChanged="BindableObject_OnPropertyChanged"
+                        IsEnabled="{Binding Path=OrderItemStatus, Converter={StaticResource OrderItemStatusEnumToBooleanConverter}}">
+                        <ViewCell.ContextActions>
+                            <MenuItem
+                                Command="{Binding Path=BindingContext.ItemDeliveredCommand, Source={x:Reference Name=ListView}}"
+                                CommandParameter="{Binding Path=.}"
+                                Text="Deliver" />
+                            <MenuItem
+                                Command="{Binding Path=BindingContext.ItemCanceledCommand, Source={x:Reference Name=ListView}}"
+                                CommandParameter="{Binding Path=.}"
+                                Text="Cancel" />
+                            <MenuItem
+                                Command="{Binding Path=BindingContext.ItemDamagedCommand, Source={x:Reference Name=ListView}}"
+                                CommandParameter="{Binding Path=.}"
+                                Text="Damaged" />
+                        </ViewCell.ContextActions>
+                        <Grid
+                            VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="72" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid>
+                                <Image
+                                    VerticalOptions="Center"
+                                    Source="{Binding Path=Icon}" />
+                                <Image
+                                    VerticalOptions="Center"
+                                    Source="{Binding Path=StatusIcon}" />
+                            </Grid>
+
+                            <Label
+                                Grid.Column="1"
+                                Style="{StaticResource Label16}"
+                                HorizontalOptions="Start"
+                                Text="{Binding Path=Description}" />
+
+                            <StackLayout
+                                HorizontalOptions="End"
+                                Orientation="Horizontal"
+                                Grid.Column="2">
+                                <Label
+                                    Style="{StaticResource Label16}"
+                                    HorizontalOptions="End"
+                                    Text="{Binding Path=Quantity}" />
+                                <Label
+                                    Style="{StaticResource Label16}"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Path=UnitOfMeasure}" />
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout
+            Spacing="0"
+            Grid.Row="1">
+            <Label
+                Text="{Binding Path=DeliverOrder.TotalDelivered, StringFormat='{0:C}'}"
+                Style="{StaticResource Label46}"
+                TextColor="{StaticResource PrimaryColor}" />
+            <Label
+                Style="{StaticResource Label11}"
+                Text="Total Billable" />
+        </StackLayout>
+
+        <Grid
+            Margin="20"
+            Grid.Row="2">
+            <Grid
+                VerticalOptions="Center"
+                IsVisible="{Binding Path=DeliverOrder.OrderStatus, Converter={StaticResource OrderStatusEnumToBooleanConverter}, ConverterParameter={x:Static model:OrderStatus.New}}">
+                <Button
+                    Command="{Binding Path=CompleteOrderCommand}"
+                    BackgroundColor="{StaticResource PrimaryColor}" />
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Image
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        Source="check_white.png" />
+                    <Label
+                        Style="{StaticResource ButtonLabel}"
+                        x:Name="LabelCompleteButton"
+                        Text="{Binding Path=CompleteButtonText}" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Path=CompleteOrderCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+
+            <Grid
+                VerticalOptions="Center"
+                IsVisible="{Binding Path=DeliverOrder.OrderStatus, Converter={StaticResource OrderStatusEnumToBooleanConverter}, ConverterParameter={x:Static model:OrderStatus.ReadyForSignature}}">
+                <Button
+                    Command="{Binding Path=SignOrderCommand}"
+                    BackgroundColor="{StaticResource PrimaryColor}" />
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Image
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        Source="pencil_white.png" />
+                    <Label
+                        Style="{StaticResource ButtonLabel}"
+                        Text="Sign" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Path=SignOrderCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+
+            <Button
+                IsVisible="{Binding Path=DeliverOrder.OrderStatus, Converter={StaticResource OrderStatusEnumToBooleanConverter}, ConverterParameter={x:Static model:OrderStatus.Completed}}"
+                TextColor="White"
+                Text="Completed"
+                IsEnabled="False"
+                BackgroundColor="{StaticResource DisabledButton}" />
+        </Grid>
+    </Grid>
+
+</ContentPage>

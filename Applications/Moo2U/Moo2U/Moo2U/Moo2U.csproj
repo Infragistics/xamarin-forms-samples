@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705;NU1701;IDE0001;IDE0002;IDE0003;IDE0016</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Infragistics.XF.Charts" Version="17.2.1051" />
+    <PackageReference Include="Infragistics.XF.Gauges" Version="17.2.1051" />
+    <PackageReference Include="SignaturePad.Xamarin.Forms.PCL" Version="1.0.0.1" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+    <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.362" />
+  </ItemGroup>
+
+  <ItemGroup Label="ViewModels">
+    <Compile Update="**\DeliveriesPageViewModel.cs" DependentUpon="DeliveriesPage.xaml" />
+    <Compile Update="**\DeliverOrderPageViewModel.cs" DependentUpon="DeliverOrderPage.xaml" />
+    <Compile Update="**\PerformancePageViewModel.cs" DependentUpon="PerformancePage.xaml" />
+    <Compile Update="**\SeedDatabasePageViewModel.cs" DependentUpon="SeedDatabasePage.xaml" />
+    <Compile Update="**\SignOrderPageViewModel.cs" DependentUpon="SignOrderPage.xaml" />
+  </ItemGroup>
+</Project>

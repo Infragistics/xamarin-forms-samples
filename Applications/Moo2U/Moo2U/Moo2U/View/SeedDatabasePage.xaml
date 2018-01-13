@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Moo2U.View.SeedDatabasePage">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness">
+            <On
+                Platform="iOS"
+                Value="0,30,0,0" />
+            <On
+                Platform="Android"
+                Value="0,10,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <Grid>
+        <Image
+            VerticalOptions="Start"
+            Source="logo.png"
+            HorizontalOptions="Center" />
+
+        <Label
+            VerticalOptions="Center"
+            Margin="0,-20,0,0"
+            TextColor="Firebrick"
+            Text="Seeding database..."
+            Style="{StaticResource Label16}"/>
+
+        <ActivityIndicator
+            IsRunning="True"
+            HeightRequest="70"
+            Color="Firebrick"
+            Margin="0,20,0,0"
+            VerticalOptions="Center" />
+
+    </Grid>
+</ContentPage>

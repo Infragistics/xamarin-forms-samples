@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- When 2.3.4 RTM's we can disable tab swiping -->
+
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:moo2u="clr-namespace:Moo2U;assembly=Moo2U"
+    xmlns:view="clr-namespace:Moo2U.View;assembly=Moo2U"
+    x:Class="Moo2U.View.MainPage">
+  <view:DeliveriesPage
+        Icon="delivery_active.png"
+        Title="{x:Static moo2u:Constants.Deliveries}" />
+
+    <view:MapPage
+        Icon="map.png"
+        Title="{x:Static moo2u:Constants.Map}" />
+
+    <view:PerformancePage
+        Icon="performance.png"
+        Title="{x:Static moo2u:Constants.Performance}" />
+
+</TabbedPage>

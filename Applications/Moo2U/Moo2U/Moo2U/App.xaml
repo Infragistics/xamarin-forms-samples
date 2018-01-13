@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<prism:PrismApplication
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+    xmlns:controls="clr-namespace:Moo2U.Controls;assembly=Moo2U"
+    xmlns:xamarinForms="clr-namespace:Infragistics.XamarinForms;assembly=Infragistics.XF.DataVisualization"
+    x:Class="Moo2U.App">
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+            <Color
+                x:Key="PrimaryColor">
+                #009b6a
+            </Color>
+            <Color
+                x:Key="SecondaryColor">
+                #8a000000
+            </Color>
+            <Color
+                x:Key="TextColor">
+                #70504d
+            </Color>
+            <Color
+                x:Key="SelectedBarColor">
+                #704f4d
+            </Color>
+            <Color
+                x:Key="BackgroundColor">
+                #fefaf6
+            </Color>
+            <Color
+                x:Key="RustyRedColor">
+                #d02c16
+            </Color>
+            <Color
+                x:Key="RustyRedTransparentColor">
+                #88d02c16
+            </Color>
+            <Color
+                x:Key="RustyRedDarkColor">
+                #B32B19
+            </Color>
+            <Color
+                x:Key="MangoColor">
+                #fba821
+            </Color>
+            <Color
+                x:Key="MangoDarkColor">
+                #E1961D
+            </Color>
+            <Color
+                x:Key="DarkGreenColor">
+                #004532
+            </Color>
+            <Color
+                x:Key="LightKhakiColor">
+                #fbf3e8
+            </Color>
+
+            <Color
+                x:Key="DisabledButton">
+                #33000000
+            </Color>
+            <Color
+                x:Key="SignaturePadColor">
+                #FFF7F5F0
+            </Color>
+
+            <xamarinForms:SolidColorBrush
+                x:Key="TextBrush"
+                Color="{StaticResource TextColor}" />
+            <xamarinForms:SolidColorBrush
+                x:Key="MangoBrush"
+                Color="{StaticResource MangoColor}" />
+            <xamarinForms:SolidColorBrush
+                x:Key="MangoDarkBrush"
+                Color="{StaticResource MangoDarkColor}" />
+            <xamarinForms:SolidColorBrush
+                x:Key="RustyRedBrush"
+                Color="{StaticResource RustyRedColor}" />
+            <xamarinForms:SolidColorBrush
+                x:Key="RustyRedDarkBrush"
+                Color="{StaticResource RustyRedDarkColor}" />
+            <xamarinForms:SolidColorBrush
+                x:Key="RustyRedTransparentBrush"
+                Color="{StaticResource RustyRedTransparentColor}" />
+            <xamarinForms:SolidColorBrush
+                x:Key="TransparentBrush"
+                Color="Transparent" />
+            <xamarinForms:SolidColorBrush
+                x:Key="TealBrush"
+                Color="{StaticResource PrimaryColor}" />
+            <xamarinForms:SolidColorBrush
+                x:Key="DarkGreenBrush"
+                Color="{StaticResource DarkGreenColor}" />
+
+            <OnPlatform
+                x:Key="LabelFontSize8"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="6" />
+                <On
+                    Platform="Android"
+                    Value="8" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="LabelFontSize9"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="7" />
+                <On
+                    Platform="Android"
+                    Value="9" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="LabelFontSize11"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="8" />
+                <On
+                    Platform="Android"
+                    Value="11" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="LabelFontSize12"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="9" />
+                <On
+                    Platform="Android"
+                    Value="12" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="LabelFontSize13"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="10" />
+                <On
+                    Platform="Android"
+                    Value="13" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="LabelFontSize14"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="12" />
+                <On
+                    Platform="Android"
+                    Value="14" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="LabelFontSize16"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="14" />
+                <On
+                    Platform="Android"
+                    Value="16" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="LabelFontSize46"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="32" />
+                <On
+                    Platform="Android"
+                    Value="46" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="DimensionRequest16"
+                x:TypeArguments="x:Double">
+                <On
+                    Platform="iOS"
+                    Value="14" />
+                <On
+                    Platform="Android"
+                    Value="16" />
+            </OnPlatform>
+
+            <OnPlatform
+                x:Key="DefaultFontFamily"
+                x:TypeArguments="x:String">
+                <On
+                    Platform="iOS"
+                    Value="Roboto-Regular" />
+                <On
+                    Platform="Android"
+                    Value="Roboto-Regular.ttf#Roboto-Regular" />
+            </OnPlatform>
+
+            <Style
+                TargetType="Label"
+                x:Key="Label8">
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize8}" />
+                <Setter
+                    Property="TextColor"
+                    Value="{StaticResource TextColor}" />
+                <Setter
+                    Property="VerticalTextAlignment"
+                    Value="Center" />
+                <Setter
+                    Property="HorizontalTextAlignment"
+                    Value="Center" />
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="HorizontalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="FontFamily"
+                    Value="{StaticResource DefaultFontFamily}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                BasedOn="{StaticResource Label8}"
+                x:Key="Label9">
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize9}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                BasedOn="{StaticResource Label8}"
+                x:Key="Label11">
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize11}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                BasedOn="{StaticResource Label8}"
+                x:Key="Label12">
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize12}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                BasedOn="{StaticResource Label8}"
+                x:Key="Label13">
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize13}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                BasedOn="{StaticResource Label8}"
+                x:Key="Label14">
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize14}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                BasedOn="{StaticResource Label8}"
+                x:Key="Label16">
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize16}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                BasedOn="{StaticResource Label8}"
+                x:Key="Label46">
+                <Setter
+                    Property="VerticalOptions"
+                    Value="End" />
+                <Setter
+                    Property="VerticalTextAlignment"
+                    Value="End" />
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize46}" />
+                <Setter
+                    Property="TextColor"
+                    Value="{StaticResource RustyRedColor}" />
+            </Style>
+
+            <Style
+                TargetType="Label"
+                x:Key="ButtonLabel">
+                <Setter
+                    Property="Margin"
+                    Value="8,0,0,0" />
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="HorizontalOptions"
+                    Value="Start" />
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource LabelFontSize16}" />
+                <Setter
+                    Property="TextColor"
+                    Value="White" />
+            </Style>
+
+            <DataTemplate
+                x:Key="DeliveryListItemsTemplate">
+                <ViewCell>
+                    <Grid
+                        VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition>
+                                <ColumnDefinition.Width>
+                                    <OnPlatform
+                                        x:TypeArguments="GridLength">
+                                        <On
+                                            Platform="iOS"
+                                            Value="60" />
+                                        <On
+                                            Platform="Android"
+                                            Value="72" />
+                                    </OnPlatform>
+                                </ColumnDefinition.Width>
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+                            Margin="10,0,0,0"
+                            VerticalOptions="Center"
+                            Source="{Binding Path=Icon}" />
+
+                        <StackLayout
+                            Spacing="0"
+                            VerticalOptions="Center"
+                            Margin="20,2,0,2"
+                            Grid.Column="1">
+                            <Label
+                                TextColor="{StaticResource PrimaryColor}"
+                                FontSize="{StaticResource LabelFontSize16}"
+                                VerticalOptions="End"
+                                Text="{Binding Path=Name}" />
+                            <Label
+                                TextColor="{StaticResource SecondaryColor}"
+                                FontSize="{StaticResource LabelFontSize11}"
+                                VerticalOptions="Start"
+                                Text="{Binding Path=Address}" />
+                            <Label
+                                TextColor="{StaticResource SecondaryColor}"
+                                FontSize="{StaticResource LabelFontSize11}"
+                                VerticalOptions="Start"
+                                Text="{Binding Path=CityStateZip}" />
+                        </StackLayout>
+
+                        <Grid
+                            HorizontalOptions="End"
+                            Grid.Column="2">
+                            <Grid.HeightRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double">
+                                    <On
+                                        Platform="iOS"
+                                        Value="60" />
+                                    <On
+                                        Platform="Android"
+                                        Value="72" />
+                                </OnPlatform>
+                            </Grid.HeightRequest>
+                            <Grid.WidthRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double">
+                                    <On
+                                        Platform="iOS"
+                                        Value="60" />
+                                    <On
+                                        Platform="Android"
+                                        Value="72" />
+                                </OnPlatform>
+                            </Grid.WidthRequest>
+
+                            <controls:RoundProgressIndicator
+                                x:Name="RoundProgressIndicator"
+                                ProgressValue="{Binding Path=ItemPercentDelivered}" />
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontSize="{StaticResource LabelFontSize12}"
+                                Text="{Binding Path=ItemPercentDelivered, StringFormat='{0}%'}"
+                                TextColor="{Binding Path=ProgressBrushColor, Source={x:Reference RoundProgressIndicator}}" />
+
+                            <Image
+                                IsVisible="{Binding Path=IsCompletedAndUnsigned}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Source="{Binding Path=CompletedAndUnsignedIcon}" />
+                        </Grid>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <ControlTemplate
+                x:Key="ButtonBarTemplate">
+                <Grid>
+                    <Grid
+                        ColumnSpacing="-4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition /> <ColumnDefinition /> <ColumnDefinition /> <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <controls:RoundedBoxView
+                            Grid.Column="0"
+                            Stroke="{TemplateBinding ActiveColor}"
+                            StrokeThickness="1"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Color="{TemplateBinding TodayColor}" />
+
+                        <controls:RoundedBoxView
+                            Grid.Column="1"
+                            Stroke="{TemplateBinding ActiveColor}"
+                            StrokeThickness="1"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Color="{TemplateBinding WeekColor}" />
+
+                        <controls:RoundedBoxView
+                            Grid.Column="2"
+                            Stroke="{TemplateBinding ActiveColor}"
+                            StrokeThickness="1"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Color="{TemplateBinding MonthColor}" />
+
+                        <controls:RoundedBoxView
+                            Grid.Column="3"
+                            Stroke="{TemplateBinding ActiveColor}"
+                            StrokeThickness="1"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Color="{TemplateBinding YearColor}" />
+
+                        <Label
+                            BackgroundColor="Transparent"
+                            Grid.Column="0"
+                            TextColor="{TemplateBinding TodayTextColor}"
+                            Text="{TemplateBinding TodayText}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontSize="{StaticResource LabelFontSize13}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{TemplateBinding LabelTappedCommand}"
+                                    CommandParameter="{x:Static controls:ButtonBarState.Today}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label
+                            BackgroundColor="Transparent"
+                            Grid.Column="1"
+                            TextColor="{TemplateBinding WeekTextColor}"
+                            Text="{TemplateBinding WeekText}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontSize="{StaticResource LabelFontSize13}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{TemplateBinding LabelTappedCommand}"
+                                    CommandParameter="{x:Static controls:ButtonBarState.Week}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label
+                            BackgroundColor="Transparent"
+                            Grid.Column="2"
+                            TextColor="{TemplateBinding MonthTextColor}"
+                            Text="{TemplateBinding MonthText}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontSize="{StaticResource LabelFontSize13}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{TemplateBinding LabelTappedCommand}"
+                                    CommandParameter="{x:Static controls:ButtonBarState.Month}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label
+                            BackgroundColor="Transparent"
+                            Grid.Column="3"
+                            TextColor="{TemplateBinding YearTextColor}"
+                            Text="{TemplateBinding YearText}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontSize="{StaticResource LabelFontSize13}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{TemplateBinding LabelTappedCommand}"
+                                    CommandParameter="{x:Static controls:ButtonBarState.Year}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+
+            <Style
+                TargetType="controls:ButtonBar"
+                x:Key="ButtonBarStyle">
+                <Setter
+                    Property="ControlTemplate"
+                    Value="{StaticResource ButtonBarTemplate}" />
+
+            </Style>
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
+</prism:PrismApplication>
